@@ -56,7 +56,7 @@
                     username: '',
                     password: '',
                 },
-                colorSelected: "red darken-4",
+                colorSelected: "blue darken-4",
                 isInvalildCredential : false
             }
         },
@@ -74,7 +74,7 @@
                 axiosInstance
                 .post(_this.apiUrl + '/users/login', formData)
                 .then(function(res){
-                    if(res.data.status!=false){
+                    if(res.data.status){
                         VueCookies.set(_this.cookieKey, res.data);
                         _this.$router.push('/dashboard');
                     }else{
