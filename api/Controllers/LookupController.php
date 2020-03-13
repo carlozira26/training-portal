@@ -25,6 +25,21 @@ class LookupController
 		}
 		return $this->container->response->withJson($this->response);
     }
+
+    public function submit($request, $response, $args){
+        $body = $request->getParsedBody();
+        $type = $body['type'];
+        $name = $body['name'];
+        $lookup = LookupModel::create(array(
+            'type' => strtolower($type),
+            'name' => ucwords($name)
+        ));
+        if($lookup){
+            $this->response['status'] = true;
+            $this->response['message'] = "Successfully Added!";
+        }
+        return $this->container->response->withJson($this->response);
+    }
 }
 
 ?>

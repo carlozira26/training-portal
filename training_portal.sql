@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2020 at 09:39 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.1.32
+-- Generation Time: Mar 13, 2020 at 01:52 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,46 +30,60 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `agent_information` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(50) NOT NULL,
-  `middlename` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `birthday` date NOT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `middlename` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
   `contactnumber` varchar(20) DEFAULT NULL,
-  `address` varchar(255) NOT NULL,
-  `municipality` varchar(255) NOT NULL,
-  `gender` enum('Male','Female') NOT NULL,
-  `civilstatus` varchar(50) NOT NULL,
-  `educationallevel` varchar(255) NOT NULL,
-  `coursetaken` varchar(255) NOT NULL,
-  `fdexperience` enum('Y','N') NOT NULL,
-  `ccexperience` enum('Y','N') NOT NULL,
-  `reference` varchar(50) NOT NULL,
-  `batchnumber` int(11) NOT NULL,
-  `account` varchar(50) NOT NULL,
-  `site` varchar(50) NOT NULL,
-  `trainer` varchar(50) NOT NULL,
-  `ctstartdate` date NOT NULL,
-  `ctenddate` date NOT NULL,
-  `nhipstartdate` date NOT NULL,
-  `nhipenddate` date NOT NULL,
-  `pbdate` date NOT NULL,
-  `trainingstatus` varchar(50) NOT NULL,
-  `reason` varchar(50) NOT NULL,
-  `aht` varchar(255) NOT NULL,
-  `qagrade` int(11) NOT NULL,
-  `totaltc` int(11) NOT NULL,
-  `avetc` int(11) NOT NULL,
-  `complaintcount` int(11) NOT NULL,
-  `complaintovertc` int(11) NOT NULL,
-  `absencescount` int(11) NOT NULL,
-  `tardinesscount` int(11) NOT NULL,
-  `reliability` varchar(255) NOT NULL,
-  `agentsite` varchar(50) NOT NULL,
-  `ngucc` varchar(50) NOT NULL,
-  `ironman` varchar(50) NOT NULL,
-  `xavier` varchar(50) NOT NULL,
-  `crm` varchar(50) NOT NULL
+  `address` varchar(255) DEFAULT NULL,
+  `municipality` varchar(255) DEFAULT NULL,
+  `gender` enum('Male','Female') DEFAULT NULL,
+  `civilstatus` varchar(50) DEFAULT NULL,
+  `educationallevel` varchar(255) DEFAULT NULL,
+  `coursetaken` varchar(255) DEFAULT NULL,
+  `fdexperience` enum('Yes','No') DEFAULT NULL,
+  `ccexperience` enum('Yes','No') DEFAULT NULL,
+  `reference` varchar(50) DEFAULT NULL,
+  `batchnumber` varchar(50) DEFAULT NULL,
+  `account` varchar(50) DEFAULT NULL,
+  `site` varchar(50) DEFAULT NULL,
+  `trainer` varchar(50) DEFAULT NULL,
+  `ctstartdate` date DEFAULT NULL,
+  `ctenddate` date DEFAULT NULL,
+  `nhipstartdate` date DEFAULT NULL,
+  `nhipenddate` date DEFAULT NULL,
+  `pbdate` date DEFAULT NULL,
+  `trainingstatus` varchar(50) DEFAULT NULL,
+  `reason` varchar(50) DEFAULT NULL,
+  `aht` varchar(255) DEFAULT NULL,
+  `qagrade` int(11) DEFAULT NULL,
+  `totaltc` int(11) DEFAULT NULL,
+  `avetc` int(11) DEFAULT NULL,
+  `complaintcount` int(11) DEFAULT NULL,
+  `complaintovertc` int(11) DEFAULT NULL,
+  `absencescount` int(11) DEFAULT NULL,
+  `tardinesscount` int(11) DEFAULT NULL,
+  `reliability` varchar(255) DEFAULT NULL,
+  `agentsite` varchar(50) DEFAULT NULL,
+  `ngucc` varchar(50) DEFAULT NULL,
+  `ironman` varchar(50) DEFAULT NULL,
+  `xavier` varchar(50) DEFAULT NULL,
+  `crm` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agent_information`
+--
+
+INSERT INTO `agent_information` (`id`, `firstname`, `middlename`, `lastname`, `birthday`, `contactnumber`, `address`, `municipality`, `gender`, `civilstatus`, `educationallevel`, `coursetaken`, `fdexperience`, `ccexperience`, `reference`, `batchnumber`, `account`, `site`, `trainer`, `ctstartdate`, `ctenddate`, `nhipstartdate`, `nhipenddate`, `pbdate`, `trainingstatus`, `reason`, `aht`, `qagrade`, `totaltc`, `avetc`, `complaintcount`, `complaintovertc`, `absencescount`, `tardinesscount`, `reliability`, `agentsite`, `ngucc`, `ironman`, `xavier`, `crm`) VALUES
+(1, 'Test', 'Test', 'Test', '0000-00-00', '+639000000000', 'test1', 'test', 'Male', 'Single', 'College Grad', 'null', '', '', 'Walk In', 'Batch 2', 'Jollibee', 'Ortigas', 'Arthur Mercado', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', 'PB Regular', 'AWOL', 'test', 90, 0, 0, 0, 0, 0, 0, 'test', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(2, 'Test', 'Test', 'Test', '0000-00-00', 'null', 'test', 'test', 'Male', 'Single', 'College Grad', 'null', 'Yes', 'Yes', 'Walk In', 'Batch 2', 'Jollibee', 'Ortigas', 'Arthur Mercado', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', 'PB Regular', 'Health Issue', 'test', 90, 0, 0, 0, 0, 0, 0, 'test', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(3, 'Test', 'Test', 'Test', '0000-00-00', 'null', 'test', 'test', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'Walk In', '0', 'Jollibee', 'Ortigas', 'Arthur Mercado', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', '2020-01-01', 'PB Regular', 'Domestic Problem', 'test', 90, 0, 0, 0, 0, 5, 0, 'test', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(4, 'test', 'test', 'test', '1995-05-22', '0911111111', 'test', 'test', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'Referral', '0', 'Jollibee', 'Ortigas', 'Bryan Robleza', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', 'PB Regular', 'Domestic Problem', '90', 90, 500, 500, 3, 3, 1, 1, '90', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(5, 'test', 'test', 'test', '1995-05-22', '0911111111', 'test', 'test', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'Referral', '0', 'Chowking', 'Ortigas', 'Bryan Robleza', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', 'PB Regular', 'Domestic Problem', '90', 90, 500, 500, 3, 3, 1, 1, '90', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(6, 'test', 'test', 'test', '1995-05-22', '0911111111', 'test', 'test', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'Referral', '0', 'Greenwich', 'Marilao', 'Bryan Robleza', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', 'PB Regular', 'Domestic Problem', '90', 90, 500, 500, 3, 3, 1, 1, '90', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(7, 'test', 'test', 'test', '1995-05-22', '0911111111', 'test', 'test', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'Referral', '0', 'Jollibee', 'Ortigas', 'Bryan Robleza', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', '1995-05-22', 'PB Regular', 'Domestic Problem', '90', 90, 500, 500, 3, 3, 1, 1, '90', 'admin', 'admin', 'admin', 'admin', 'admin'),
+(8, 'John Christian', 'Santos', 'Obille', '1995-05-22', '+639055383442', 'M. Vasquez St.,', 'Mandaluyong', 'Male', 'Single', 'College Grad', 'BSIT', 'Yes', 'Yes', 'SGCC Site/FB', '0', 'Jollibee', 'Ortigas', 'Arthur Mercado', '2020-03-11', '2020-03-31', '2020-03-31', '2020-04-01', '2020-04-30', 'PB Regular', 'Health Issue', 'test', 90, 90, 90, 0, 0, 0, 0, 'test', 'admin', 'admin', 'admin', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -146,7 +160,9 @@ INSERT INTO `lookup` (`id`, `type`, `name`, `is_active`) VALUES
 (55, 'attrition', 'Dehired/Failed Performance', 'Y'),
 (56, 'attrition', 'Terminated', 'Y'),
 (57, 'attrition', 'Health Issue', 'Y'),
-(58, 'attrition', 'Domestic Problem', 'Y');
+(58, 'attrition', 'Domestic Problem', 'Y'),
+(59, 'batch', 'Batch 1', 'Y'),
+(60, 'batch', 'Batch 2', 'Y');
 
 -- --------------------------------------------------------
 
@@ -200,19 +216,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `agent_information`
 --
 ALTER TABLE `agent_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `lookup`
 --
 ALTER TABLE `lookup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,7 +11,7 @@ $app->add(new JwtAuthentication([
     "relaxed" => ["localhost", "127.0.0.1"],
     "header" => "Authorization",
     "regexp" => "/Bearer\s+(.*)$/i",
-    "passthrough" => ['/api/login'],
+    "passthrough" => ['/api/login','/form/submit', '/form/lookup'],
     "callback" => function($request, $response, $params) use ($container){
         $Utils = new Utils();
         $user = $Utils->getUserFromBearerToken($request, $container);
