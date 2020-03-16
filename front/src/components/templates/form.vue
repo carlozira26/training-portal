@@ -399,8 +399,7 @@ import VueCookies from 'vue-cookies';
 		mounted : function(){
 			this.eventHub.$on('showTraineeDetails', val =>{
 				let trainee = val.traineeDetails;
-
-				this.edit = 1;
+				
 				this.form.id = trainee.id;
 				this.form.firstname = trainee.firstname;
 				this.form.middlename = trainee.middlename;

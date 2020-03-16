@@ -5,7 +5,10 @@
 					JFC NEW HIRES TRACKING REPORT
 				<v-spacer></v-spacer>
 				<v-btn class="primary ma-1" title="Add Lookup" @click="lookupmodal=true"><v-icon>fa-plus</v-icon></v-btn>
-				<v-btn class="primary ma-1" title="Download"><v-icon>fa-download</v-icon></v-btn>
+				<download-excel :data   = "traineesList" name="Trainees List.xls" :fields="json_fields">
+					<v-btn class="primary ma-1" title="Download"><v-icon>fa-download</v-icon></v-btn>
+				</download-excel>
+				
 			</v-card-title>
 			<v-card-text>
 				<v-layout>
@@ -29,6 +32,7 @@
 						<tr>
 							<th>FIRST NAME</th>
 							<th>MIDDLE NAME</th>
+							<th>LAST NAME</th>
 							<th>BIRTHDAY</th>
 							<th>CONTACT NUMBER</th>
 							<th>ADDRESS</th>
@@ -72,10 +76,11 @@
 							<td>{{trainee.firstname}}</td>
 							<td>{{trainee.middlename}}</td>
 							<td>{{trainee.lastname}}</td>
+							<td>{{trainee.birthday}}</td>
 							<td>{{trainee.contactnumber}}</td>
 							<td>{{trainee.address}}</td>
 							<td>{{trainee.municipality}}</td>
-							<td>{{getBirthAge(trainee.birthday)}}</td>
+							<td>{{trainee.age}}</td>
 							<td>{{trainee.gender}}</td>
 							<td>{{trainee.civilstatus}}</td>
 							<td>{{trainee.educationallevel}}</td>
@@ -131,20 +136,17 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
-		<v-dialog v-model="editTraineeModal" max-width="1000">
-			<v-card>
-				<v-card-title class="display-1 primary darken-4 white--text">
-					JFC Training Portal
-				</v-card-title>
-				<form-component></form-component>
-			</v-card>
-		</v-dialog>
+		<form-component></form-component>
 	</div>
 </template>
 <script>
     import VueCookies from 'vue-cookies';
-    import formComponent from './form.vue';
+    import formComponent from './edit-form.vue';
     import axios from 'axios';
+    import Vue from 'vue';
+	import JsonExcel from 'vue-json-excel';
+
+	Vue.component('downloadExcel', JsonExcel);
     export default {
 		components:{
 			'form-component' : formComponent,
@@ -153,7 +155,6 @@
 			this.fetchTrainees();
 			this.fetchLookup();
 			this.eventHub.$on('traineeModal', val =>{
-				this.editTraineeModal = false;
 				this.fetchTrainees();
 			});
         },
@@ -172,7 +173,48 @@
 
                 lookuptype : '',
                 lookupname : '',
-                trainee : []
+                trainee : [],
+                json_fields : {
+					'First Name' : 'firstname',
+					'Middle Name' : 'middlename',
+					'Last Name' : 'lastname',
+					'Birthday' : 'birthday',
+					'Contact Number' : 'contactnumber',
+					'Address' : 'address',
+					'Municipality' : 'municipality',
+					'Age' : 'age',
+					'Gender' : 'gender',
+					'Civil Status' : 'civilstatus',
+					'Educational Level' : 'educationallevel',
+					'Food Delivery Experience' : 'fdexperience',
+					'Call Center Experience' : 'ccexperience',
+					'Reference of Application' : 'reference',
+					'Batch Number' : 'batchnumber',
+					'Account' : 'account',
+					'Site' : 'site',
+					'Trainer' : 'trainer',
+					'Classroom Training Start Date' : 'ctstartdate',
+					'Classroom Training End Date' : 'ctenddate',
+					'NHIP Start Date' : 'nhipstartdate',
+					'NHIP End Date' : 'nhipenddate',
+					'Project Base Date' : 'pbdate',
+					'Training Status' : 'trainingstatus',
+					'Reason of Attrition' : 'reason',
+					'AHT' : 'aht',
+					'QA Grade' : 'qagrade',
+					'Total TC' : 'totaltc',
+					'Average TC' : 'avetc',
+					'Complaint Count' : 'complaintcount',
+					'Complaint Over TC' : 'complaintovertc',
+					'Absences Count' : 'absencescount',
+					'Tardiness Count' : 'tardinesscount',
+					'Reliability' : 'reliability',
+					'Agentsite' : 'agentsite',
+					'NGUCC' : 'ngucc',
+					'Ironman' : 'ironman',
+					'Xavier' : 'xavier',
+					'CRM' : 'crm'
+                }
             }
         },
         methods : {
@@ -193,6 +235,9 @@
 				})
 				.then(function(res){
 					_this.traineesList = res.data.data;
+					for(let i in _this.traineesList){
+						_this.traineesList[i].age = _this.getBirthAge(_this.traineesList[i].birthday);
+					}
 				})
             },
             fetchLookup : function () {
@@ -240,7 +285,7 @@
 			},
 			editTrainee : function(i){
 				this.trainee = this.traineesList[i];
-				this.eventHub.$emit('showTraineeDetails',{ traineeDetails : this.traineesList[i] });
+				this.eventHub.$emit('showTraineeDetails', { traineeDetails : this.traineesList[i] });
 				this.editTraineeModal = true;
 			},
         }
