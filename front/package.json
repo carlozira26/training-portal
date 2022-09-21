@@ -20,7 +20,7 @@
     "vue-cookies": "^1.5.12",
     "vue-json-excel": "^0.2.98",
     "vue-router": "^3.0.2",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
